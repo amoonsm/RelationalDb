@@ -11,7 +11,4 @@ midterm_score.csv: Midterm scores for all students who took the exam, including 
 final_score.csv: Final exam scores for all students who took the exam, including dropped students.
 
 # Schema
-![RDB](https://github.com/user-attachments/assets/fbafd152-a9f9-43d4-ba62-cd779148b4c4)
-
-
-
+![RDB(1)](https://github.com/user-attachments/assets/f3b84dde-0e53-4ad8-83e5-11cf6cf74359)
