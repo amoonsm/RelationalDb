@@ -1,33 +1,24 @@
-
-/*
 -- GOAL: Create a table with student ID, student names, a grade percentage, and a letter grade
 
--- Setting up the schema
-CREATE DATABASE student_grade
+-- Set up the schema
+CREATE DATABASE student_grade;
 
--- Import tables from CSV files here:  
+-- Import tables from CSV files here: https://github.com/amoonsm/RelationalDb/tree/main/database
 
-
-
-
-
-*/
 -- Create a table with the necessary fields
 DROP TABLE IF EXISTS student_grade.student_with_letter;
 CREATE TABLE student_grade.student_with_letter (
 	student_id int,
-    student_name varchar(255),
+    student_name varchar(255)
 );
 
 -- Insert ids and names of students who did not drop the course
-
 INSERT INTO student_grade.student_with_letter (student_id, student_name)
 SELECT id, first_last_name
 FROM student_grade.student_record
 WHERE enrolled_status = 'Enrolled';
 
 -- Create a table with scores of manually graded assignments (writing assignment). Students are split up by their discussion section
-
 DROP TABLE IF EXISTS student_grade.student_writing_points;
 CREATE TABLE student_grade.student_writing_points AS
 	SELECT *
@@ -39,7 +30,6 @@ CREATE TABLE student_grade.student_writing_points AS
 		;
             
 -- Create a table with scores of auto-graded assignments (midterm and final)
-
 DROP TABLE IF EXISTS student_grade.student_scantron_points;
 CREATE TABLE student_grade.student_scantron_points AS
 	SELECT *
@@ -65,8 +55,7 @@ CREATE TABLE student_grade.student_scantron_points AS
 			;
 					
  -- Create a table with scores of midterm, final, and writing. 
- 
-DROP TABLE IF EXISTS student_grade.student_total_percentage;
+ DROP TABLE IF EXISTS student_grade.student_total_percentage;
 CREATE TABLE student_grade.student_total_percentage AS
 	SELECT *,
     ROUND((midterm_total + final_total + writing_total) / 2) AS grade_percentage #Add a field with grade percentage. Because the maximum total point is 200, divide by 2 to get a percentage
@@ -84,7 +73,6 @@ CREATE TABLE student_grade.student_total_percentage AS
 ;
             
 -- Calculate the grade percentage from the total points derived in the previous table
-
 SELECT current_student.student_id,
 		current_student.student_name,
         points.grade_percentage,
